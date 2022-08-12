@@ -1,0 +1,10 @@
+coverage
+node_modules
+src
+tests
+.gitignore
+.npmignore
+jest.config.js
+tsconfig.*
+.idea
+.dccache
