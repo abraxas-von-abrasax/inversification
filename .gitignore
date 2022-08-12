@@ -2,4 +2,5 @@ coverage
 lib
 node_modules
 .idea
+.vscode
 .dccache

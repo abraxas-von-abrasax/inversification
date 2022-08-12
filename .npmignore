@@ -7,4 +7,5 @@ tests
 jest.config.js
 tsconfig.*
 .idea
+.vscode
 .dccache
