@@ -1,13 +1,11 @@
 # Inversification
 
-<div class="panel panel-warning">
-Deprecation
-{: .panel-heading}
-<div class="panel-body">
+===================
+
+## Deprecation
 Deprecated in favor of [https://www.npmjs.com/package/@inversification/ioc](https://www.npmjs.com/package/@inversification/ioc)
-{: .alert .alert-warning}
-</div>
-</div>
+
+===================
 
 A simple, lightweight, dependency-free and decorator-based IOC container for Node
 
