@@ -8,7 +8,7 @@
             "outputs": ["{options.outputPath}"],
             "options": {
                 "outputPath": "dist/packages/ioc",
-                "main": "packages/ioc/src/index.ts",
+                "main": "packages/ioc/lib/index.ts",
                 "tsConfig": "packages/ioc/tsconfig.lib.json",
                 "assets": ["packages/ioc/*.md", "LICENSE"],
                 "buildableProjectDepsInPackageJsonType": "dependencies"

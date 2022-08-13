@@ -1,0 +1,44 @@
+{
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "samples/live-test/src",
+    "projectType": "application",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/samples/live-test",
+                "tsConfig": "samples/live-test/tsconfig.app.json",
+                "packageJson": "samples/live-test/package.json",
+                "main": "samples/live-test/src/main.ts",
+                "assets": ["samples/live-test/*.md"],
+                "buildableProjectDepsInPackageJsonType": "dependencies"
+            },
+            "dependsOn": ["^build"]
+        },
+        "serve": {
+            "executor": "@nrwl/node:node",
+            "options": {
+                "buildTarget": "live-test:build",
+                "watch": false
+            },
+            "dependsOn": ["build"]
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["samples/live-test/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/samples/live-test"],
+            "options": {
+                "jestConfig": "samples/live-test/jest.config.ts",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}

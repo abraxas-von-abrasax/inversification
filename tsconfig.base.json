@@ -31,9 +31,8 @@
         "skipLibCheck": false,
         "baseUrl": ".",
         "paths": {
-            "@inversification/ioc": [
-                "packages/ioc/src/index.ts"
-            ]
+            "@inversification/ioc": ["packages/ioc/lib/index.ts"],
+            "@inversification/live-test": ["samples/live-test/src/main.ts"]
         }
     },
     "exclude": [
