@@ -25,11 +25,7 @@
         "prebuild": "npm run clean",
         "posttest": "npm run typecheck",
         "prepare": "npm run build",
-        "prepublishOnly": "npm test",
-        "preversion": "npm test",
         "postversion": "git push && git push --tags",
-        "test": "jest --detectOpenHandles",
-        "coverage": "jest --coverage",
         "build": "tsc --build",
         "clean": "tsc --build --clean",
         "typecheck": "tsc -p . --noEmit"
