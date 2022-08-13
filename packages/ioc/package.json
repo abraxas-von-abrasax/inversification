@@ -23,11 +23,8 @@
     },
     "scripts": {
         "prebuild": "npm run clean",
-        "posttest": "npm run typecheck",
-        "prepare": "npm run build",
         "postversion": "git push && git push --tags",
         "build": "tsc --build",
-        "clean": "tsc --build --clean",
-        "typecheck": "tsc -p . --noEmit"
+        "clean": "tsc --build --clean"
     }
 }
