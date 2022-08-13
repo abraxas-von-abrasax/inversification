@@ -1,4 +1,4 @@
-import { ContainerTools } from '../src';
+import { ContainerTools } from '../lib';
 
 const ServiceMock = jest.fn().mockImplementation(() => ({
     name: 'ServiceMock',

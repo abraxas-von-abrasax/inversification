@@ -1,10 +1,10 @@
 coverage
 node_modules
-src
-tests
+packages/ioc/lib
+packages/ioc/tests
 .gitignore
 .npmignore
-jest.config.js
+packages/ioc/jest.config.ts
 tsconfig.*
 .idea
 .vscode

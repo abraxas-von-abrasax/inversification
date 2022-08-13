@@ -1,17 +1,15 @@
 {
+    "compileOnSave": false,
     "compilerOptions": {
-        "target": "es2016",
+        "module": "CommonJS",
+        "target": "ES2016",
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "module": "commonjs",
-        "rootDir": "src",
-        "moduleResolution": "node",
+        "moduleResolution": "Node",
         "checkJs": true,
         "declaration": true,
         "declarationMap": true,
         "sourceMap": true,
-        "outDir": "lib",
-        "sourceRoot": "src",
         "esModuleInterop": true,
         "strict": true,
         "noImplicitAny": true,
@@ -30,6 +28,24 @@
         "noUncheckedIndexedAccess": true,
         "noImplicitOverride": true,
         "noPropertyAccessFromIndexSignature": true,
-        "skipLibCheck": false
-    }
+        "skipLibCheck": false,
+        "baseUrl": ".",
+        "paths": {
+            "@inversification/ioc": [
+                "packages/ioc/src/index.ts"
+            ]
+        }
+    },
+    "exclude": [
+        "node_modules",
+        "*/**/node_modules",
+        "dist",
+        "*/**/dist",
+        "jest.config.ts",
+        "*/**/jest.config.ts",
+        "*/**/*.spec.ts",
+        "*/**/*.test.ts",
+        "tmp",
+        "*/**/tmp"
+    ]
 }

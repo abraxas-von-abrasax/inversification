@@ -1,4 +1,4 @@
-import { ContainerTools, inject, injectable } from '../src';
+import { ContainerTools, inject, injectable } from '../lib';
 
 @injectable()
 class InnerService {

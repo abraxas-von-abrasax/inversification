@@ -1,41 +1,40 @@
 {
     "name": "inversification",
-    "version": "1.0.1",
-    "description": "A simple decorator-based IOC container",
-    "main": "lib/index.js",
+    "version": "0.0.0",
+    "private": true,
+    "workspaces": [
+        "packages/**",
+        "samples/**"
+    ],
+    "description": "inversification monorepo",
     "author": {
         "name": "Nenad Petkovic",
         "email": "root@nenad-petkovic.com",
         "url": "https://nenad-petkovic.com"
     },
     "repository": "git+https://github.com/abraxas-von-abrasax/inversification",
-    "types": "lib/index.d.ts",
-    "keywords": [
-        "IOC",
-        "inversion of control",
-        "typescript",
-        "inversification",
-        "lib"
-    ],
-    "files": ["lib"],
     "license": "MIT",
     "scripts": {
-        "prebuild": "npm run clean",
-        "posttest": "npm run typecheck",
-        "prepare": "npm run build",
-        "prepublishOnly": "npm test",
-        "preversion": "npm test",
-        "postversion": "git push && git push --tags",
-        "test": "jest --detectOpenHandles",
-        "coverage": "jest --coverage",
-        "build": "tsc --build",
-        "clean": "tsc --build --clean",
-        "typecheck": "tsc -p . --noEmit"
+        "start": "yarn start:runner",
+        "build:core": "nx build core",
+        "build:all": "nx run-many --target=build --all",
+        "start:runner": "nx serve runner",
+        "lint:all": "nx run-many --target=lint --all"
     },
     "devDependencies": {
+        "@nrwl/cli": "^14.5.5",
+        "@nrwl/eslint-plugin-nx": "^14.5.5",
+        "@nrwl/jest": "^14.5.5",
+        "@nrwl/js": "^14.5.5",
+        "@nrwl/linter": "^14.5.5",
+        "@nrwl/node": "^14.5.5",
         "@types/jest": "^28.1.6",
         "@types/node": "^18.7.2",
+        "@typescript-eslint/eslint-plugin": "^5.33.0",
+        "@typescript-eslint/parser": "^5.33.0",
+        "eslint": "^8.21.0",
         "jest": "^28.1.3",
+        "nx": "^14.5.5",
         "ts-jest": "^28.0.7",
         "typescript": "^4.7.4"
     }
