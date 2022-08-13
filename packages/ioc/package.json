@@ -1,6 +1,6 @@
 {
     "name": "@inversification/ioc",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "description": "A simple decorator-based IOC container",
     "license": "MIT",
     "author": {
