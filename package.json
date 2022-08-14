@@ -1,6 +1,6 @@
 {
     "name": "inversification",
-    "version": "1.1.1-depr",
+    "version": "1.1.1-depr1",
     "description": "A simple decorator-based IOC container",
     "main": "lib/index.js",
     "author": {
