@@ -1,5 +1,11 @@
 # Inversification
 
+<p align="center">
+    <img src="https://img.shields.io/npm/l/@inversification/ioc" />
+    <img src="https://img.shields.io/npm/v/@inversification/ioc" />
+    <img src="https://img.shields.io/bundlephobia/min/@inversification/ioc" />
+</p>
+
 A simple, lightweight, dependency-free and decorator-based IOC container for Node
 
 ## Basic Usage
