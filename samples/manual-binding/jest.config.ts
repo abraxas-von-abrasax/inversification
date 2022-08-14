@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-    displayName: 'live-test',
+    displayName: 'manual-binding',
     preset: '../../jest.preset.js',
     globals: {
         'ts-jest': {
@@ -12,5 +12,5 @@ export default {
         '^.+\\.[tj]s$': 'ts-jest',
     },
     moduleFileExtensions: ['ts', 'js', 'html'],
-    coverageDirectory: '../../coverage/samples/live-test',
+    coverageDirectory: '../../coverage/samples/manual-binding',
 };

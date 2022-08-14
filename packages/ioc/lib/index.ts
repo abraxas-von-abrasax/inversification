@@ -1,4 +1,4 @@
-export * from './container';
 export * from './decorators';
-export * from './setup-ioc';
+export * from './errors';
+export * from './inversification';
 export * from './types';

@@ -7,7 +7,7 @@ A simple, lightweight, dependency-free and decorator-based IOC container for Nod
 Register a class with the `@injectable` decorator:
 
 ```typescript
-// inject-me.ts
+// src/inject-me.ts
 
 import { injectable } from 'inversification';
 
@@ -22,7 +22,7 @@ export class InjectMe {
 Inject your service with the property decorator `@inject`:
 
 ```typescript
-// consumer.ts
+// src/consumer.ts
 
 import { inject } from 'inversification';
 import { InjectMe } from './inject-me.ts';
@@ -34,11 +34,10 @@ export class Consumer {
         this.service.doThings();
     }
 }
+```
 
-/********/
-/********/
-
-// main.ts
+```typescript
+// src/main.ts
 
 import { Consumer } from './consumer.ts';
 
@@ -59,6 +58,8 @@ export class Consumer {
 }
 ```
 
+You can find a (full example here)[https://github.com/abraxas-von-abrasax/inversification/tree/main/samples/basic-usage].
+
 ## Auto-discover injectables
 
 The basic usage assumes that you provide the actual class type when injecting
@@ -66,7 +67,7 @@ your services. However, `inversification` comes with an auto-discover functional
 which you can leverage to discover `injectables`:
 
 ```typescript
-// services.ts
+// src/enums/services.ts
 
 export enum Services {
     INJECTABLE_SERVICE = 'MyInjectableImpl',
@@ -74,7 +75,7 @@ export enum Services {
 ```
 
 ```typescript
-// interfaces.ts
+// src/interfaces/my-injectable.ts
 
 export interface MyInjectable {
     doThings(): void;
@@ -82,10 +83,10 @@ export interface MyInjectable {
 ```
 
 ```typescript
-// my-injectable-impl.ts
+// src/services/my-injectable-impl.ts
 
 import { injectable } from '@inversification/ioc';
-import { MyInjectable } from './interfaces';
+import { MyInjectable } from '../interfaces/my-injectable';
 
 export class MyInjectableImpl implements MyInjectable {
     doThings(): void {
@@ -95,11 +96,11 @@ export class MyInjectableImpl implements MyInjectable {
 ```
 
 ```typescript
-// consumer.ts
+// src/consumer.ts
 
 import { inject } from '@inversification/ioc';
-import { Services } from './services';
-import { MyInjectable } from './interfaces';
+import { Services } from './services/services';
+import { MyInjectable } from './interfaces/my-injectable';
 // Note: The actual implementation does not need to be imported!
 
 export class Consumer {
@@ -113,11 +114,13 @@ export class Consumer {
 ```
 
 ```typescript
-import { setupIOC } from '@inversification/ioc';
+// src/main.ts
+
+import { Inversification } from '@inversification/ioc';
 
 // setupIOC assumes that your source files live in the 'src' directory
 // and will find all classes with an @injectable() decorator.
-const modules = setupIOC();
+const modules = Inversification.discoverInjectables();
 
 // You can then require these modules
 modules.forEach(module => require(module));
@@ -125,16 +128,19 @@ modules.forEach(module => require(module));
 // Consumer needs to be imported after requiring the injectables.
 const { Consumer } = require('./consumer');
 const consumer = new Consumer();
-controller.run();
+consumer.run();
 ```
 
 If your source files do not live in `src`, you can specify an alternative directory:
 
 ```typescript
-import { setupIOC } from '@inversification/ioc';
+// main.ts
+
+import { Inversification } from '@inversification/ioc';
 import path from 'path';
 
-const modules = setupIOC(path.join('packages', 'my-lib', 'sources'));
+const modules = Inversification
+    .discoverInjectables(path.join('packages', 'my-lib', 'sources'));
 
 modules.forEach(module => require(module));
 ```
@@ -143,11 +149,13 @@ If you want to use the ES-style import syntax, you can wrap your
 importing logic in an `async` function:
 
 ```typescript
-import { setupIOC } from '@inversification/ioc';
+// src/main.ts
 
-const modules = setupIOC();
+import { Inversification } from '@inversification/ioc';
 
-modules.forEach(module => require(module));
+Inversification
+    .discoverInjectables()
+    .forEach(module => require(module));
 
 main();
 
@@ -157,3 +165,48 @@ async function main() {
     controller.run();
 }
 ```
+
+You can find a (full example here)[https://github.com/abraxas-von-abrasax/inversification/tree/main/samples/auto-discover].
+
+## Manual binding
+
+`inversification` comes with a handy auto-discover functionality. However,
+sometimes you need to have full control over your dependency injection flow.
+In this case, you can configure `inversification` to use the
+`InversificationStrategy.MANUAL` strategy:
+
+```typescript
+// src/ioc.ts
+
+import { Inversification, InversificationStrategy } from '@inversification/ioc';
+
+// Setting the strategy to 'manual' disables the auto-injection.
+// You need to set the strategy before importing/requiring your injectables.
+Inversification.setStrategy(InversificationStrategy.MANUAL);
+
+import { Controller } from './controller';
+import { OuterService } from './services/outer-service';
+import { InnerServiceOne } from './services/inner-service-one';
+import { InnerServiceTwo } from './services/inner-service-two';
+
+Inversification.bind(Controller.name).to(Controller);
+Inversification.bind(OuterService.name).to(OuterService);
+Inversification.bind(InnerServiceOne.name).to(InnerServiceOne);
+Inversification.bind(InnerServiceTwo.name).to(InnerServiceTwo);
+```
+
+```typescript
+// src/main.ts
+
+import { Inversification } from '@inversification/ioc';
+import './ioc';
+
+import { Controller } from './controller';
+
+const controller = Inversification
+    .getService<Controller>(Controller.name);
+
+controller.run();
+```
+
+You can find a (full example here)[https://github.com/abraxas-von-abrasax/inversification/tree/main/samples/manual-binding].

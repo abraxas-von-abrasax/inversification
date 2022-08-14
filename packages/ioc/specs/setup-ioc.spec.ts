@@ -1,4 +1,4 @@
-import { setupIOC } from '../lib';
+import { Inversification } from '../lib';
 
 const file = `@injectable()`;
 
@@ -25,7 +25,7 @@ jest.mock('fs', () => ({
 
 describe('setup-ioc', () => {
     it('should setupIOC correctly', () => {
-        const res = setupIOC();
+        const res = Inversification.discoverInjectables();
         expect(res).toStrictEqual(['./a', './b', './c/inner-a', './c/inner-b']);
     });
 });

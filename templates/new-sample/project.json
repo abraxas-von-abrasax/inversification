@@ -1,17 +1,17 @@
 {
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
-    "sourceRoot": "samples/live-test/src",
+    "sourceRoot": "samples/<<sample-name>>/src",
     "projectType": "application",
     "targets": {
         "build": {
             "executor": "@nrwl/js:tsc",
             "outputs": ["{options.outputPath}"],
             "options": {
-                "outputPath": "dist/samples/live-test",
-                "tsConfig": "samples/live-test/tsconfig.app.json",
-                "packageJson": "samples/live-test/package.json",
-                "main": "samples/live-test/src/main.ts",
-                "assets": ["samples/live-test/*.md"],
+                "outputPath": "dist/samples/<<sample-name>>",
+                "tsConfig": "samples/<<sample-name>>/tsconfig.app.json",
+                "packageJson": "samples/<<sample-name>>/package.json",
+                "main": "samples/<<sample-name>>/src/main.ts",
+                "assets": ["samples/<<sample-name>>/*.md"],
                 "buildableProjectDepsInPackageJsonType": "dependencies"
             },
             "dependsOn": ["^build"]
@@ -19,7 +19,7 @@
         "serve": {
             "executor": "@nrwl/node:node",
             "options": {
-                "buildTarget": "live-test:build",
+                "buildTarget": "<<sample-name>>:build",
                 "watch": false
             },
             "dependsOn": ["build"]
@@ -28,14 +28,14 @@
             "executor": "@nrwl/linter:eslint",
             "outputs": ["{options.outputFile}"],
             "options": {
-                "lintFilePatterns": ["samples/live-test/**/*.ts"]
+                "lintFilePatterns": ["samples/<<sample-name>>/**/*.ts"]
             }
         },
         "test": {
             "executor": "@nrwl/jest:jest",
-            "outputs": ["coverage/samples/live-test"],
+            "outputs": ["coverage/samples/<<sample-name>>"],
             "options": {
-                "jestConfig": "samples/live-test/jest.config.ts",
+                "jestConfig": "samples/<<sample-name>>/jest.config.ts",
                 "passWithNoTests": true
             }
         }

@@ -1,0 +1,44 @@
+{
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "samples/manual-binding/src",
+    "projectType": "application",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/samples/manual-binding",
+                "tsConfig": "samples/manual-binding/tsconfig.app.json",
+                "packageJson": "samples/manual-binding/package.json",
+                "main": "samples/manual-binding/src/main.ts",
+                "assets": ["samples/manual-binding/*.md"],
+                "buildableProjectDepsInPackageJsonType": "dependencies"
+            },
+            "dependsOn": ["^build"]
+        },
+        "serve": {
+            "executor": "@nrwl/node:node",
+            "options": {
+                "buildTarget": "manual-binding:build",
+                "watch": false
+            },
+            "dependsOn": ["build"]
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["samples/manual-binding/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/samples/manual-binding"],
+            "options": {
+                "jestConfig": "samples/manual-binding/jest.config.ts",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}

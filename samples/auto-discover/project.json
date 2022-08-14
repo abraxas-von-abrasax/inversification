@@ -1,0 +1,44 @@
+{
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "samples/auto-discover/src",
+    "projectType": "application",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/samples/auto-discover",
+                "tsConfig": "samples/auto-discover/tsconfig.app.json",
+                "packageJson": "samples/auto-discover/package.json",
+                "main": "samples/auto-discover/src/main.ts",
+                "assets": ["samples/auto-discover/*.md"],
+                "buildableProjectDepsInPackageJsonType": "dependencies"
+            },
+            "dependsOn": ["^build"]
+        },
+        "serve": {
+            "executor": "@nrwl/node:node",
+            "options": {
+                "buildTarget": "auto-discover:build",
+                "watch": false
+            },
+            "dependsOn": ["build"]
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["samples/auto-discover/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/samples/auto-discover"],
+            "options": {
+                "jestConfig": "samples/auto-discover/jest.config.ts",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}
