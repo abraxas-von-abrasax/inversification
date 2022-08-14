@@ -11,7 +11,9 @@ jobs:
   coverage:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@development
+      - uses: actions/checkout@v3
+        with:
+          ref: development
       - name: Generate coverage report
         run: |
           yarn global add nx
