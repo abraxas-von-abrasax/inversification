@@ -38,7 +38,20 @@
             "outputs": ["coverage/packages/ioc"],
             "options": {
                 "jestConfig": "packages/ioc/jest.config.ts",
-                "passWithNoTests": true
+                "passWithNoTests": true,
+                "detectOpenHandles": true
+            }
+        },
+        "coverage": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/packages/ioc"],
+            "options": {
+                "jestConfig": "packages/ioc/jest.config.ts",
+                "passWithNoTests": true,
+                "codeCoverage": true,
+                "reporters": ["default", "jest-junit"],
+                "coverageDirectory": "coverage/packages/ioc",
+                "detectOpenHandles": true
             }
         }
     },
