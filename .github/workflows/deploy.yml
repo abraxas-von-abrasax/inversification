@@ -31,4 +31,5 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           cd dist/packages/ioc
-          yarn npm publish --otp "$NPM_TOKEN"
+          npm config set_authToken="$NPM_TOKEN"
+          npm publish
