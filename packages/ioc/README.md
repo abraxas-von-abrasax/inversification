@@ -1,10 +1,11 @@
 # Inversification
 
+<!--suppress HtmlDeprecatedAttribute -->
 <p align="center">
-    <img src="https://img.shields.io/npm/l/@inversification/ioc" />
-    <img src="https://img.shields.io/npm/v/@inversification/ioc" />
-    <img src="https://img.shields.io/codecov/c/github/abraxas-von-abrasax/inversification/main" />
-    <img src="https://img.shields.io/bundlephobia/min/@inversification/ioc" />
+    <img alt="License: MIT" src="https://img.shields.io/npm/l/@inversification/ioc" />
+    <img alt="Version on npm" src="https://img.shields.io/npm/v/@inversification/ioc" />
+    <img alt="Test coverage" src="https://img.shields.io/codecov/c/github/abraxas-von-abrasax/inversification/main" />
+    <img alt="Minified size" src="https://img.shields.io/bundlephobia/min/@inversification/ioc" />
 </p>
 
 A simple, lightweight, dependency-free and decorator-based IOC container for Node
@@ -65,7 +66,7 @@ export class Consumer {
 }
 ```
 
-You can find a (full example here)[https://github.com/abraxas-von-abrasax/inversification/tree/main/samples/basic-usage].
+You can find a [full example here](https://github.com/abraxas-von-abrasax/inversification/tree/main/samples/basic-usage).
 
 ## Auto-discover injectables
 
@@ -125,8 +126,8 @@ export class Consumer {
 
 import { Inversification } from '@inversification/ioc';
 
-// setupIOC assumes that your source files live in the 'src' directory
-// and will find all classes with an @injectable() decorator.
+// discoverInjectables() assumes that your source files live in the 'src'
+// directory and will find all classes with an @injectable() decorator.
 const modules = Inversification.discoverInjectables();
 
 // You can then require these modules
@@ -173,7 +174,7 @@ async function main() {
 }
 ```
 
-You can find a (full example here)[https://github.com/abraxas-von-abrasax/inversification/tree/main/samples/auto-discover].
+You can find a [full example here](https://github.com/abraxas-von-abrasax/inversification/tree/main/samples/auto-discover).
 
 ## Manual binding
 
@@ -216,4 +217,4 @@ const controller = Inversification
 controller.run();
 ```
 
-You can find a (full example here)[https://github.com/abraxas-von-abrasax/inversification/tree/main/samples/manual-binding].
+You can find a [full example here](https://github.com/abraxas-von-abrasax/inversification/tree/main/samples/manual-binding).

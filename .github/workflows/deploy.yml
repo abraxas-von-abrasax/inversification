@@ -1,26 +1,36 @@
-name: coverage
+name: deploy
 
 on:
   push:
-    branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
+    branches:
+      - main
+    tags:
+      - v*
   workflow_dispatch:
 
 jobs:
-  coverage:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           ref: main
-      - name: Generate coverage report
+      - name: Install dependencies
         run: |
           yarn global add nx
           yarn install
+          nx build ioc
+      - name: Generate coverage report
+        run: |
           nx coverage ioc
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
           directory: coverage/packages/ioc
           files: clover.xml
+      - name: Publish package to npm
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          cd dist/packages/ioc
+          yarn npm publish --otp "$NPM_TOKEN"
