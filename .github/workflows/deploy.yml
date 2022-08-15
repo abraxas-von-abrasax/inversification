@@ -31,5 +31,5 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           cd dist/packages/ioc
-          npm config set_authToken="$NPM_TOKEN"
+          echo "//registry.npmjs.org/:_authToken="$NPM_TOKEN" > .npmrc
           npm publish
